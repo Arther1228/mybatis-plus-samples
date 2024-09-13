@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.samples.crud.entity.User;
 import com.baomidou.mybatisplus.samples.crud.entity.User2;
 import com.baomidou.mybatisplus.samples.crud.mapper.User2Mapper;
 import com.baomidou.mybatisplus.samples.crud.mapper.UserMapper;
+import com.baomidou.mybatisplus.samples.crud.service.IUserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class CrudTest {
     private UserMapper mapper;
     @Autowired
     private User2Mapper user2Mapper;
+
+    @Autowired
+    private IUserService userService;
 
     @Test
     public void aInsert() {
@@ -227,5 +231,16 @@ public class CrudTest {
         Assertions.assertEquals(user2Mapper.selectList(Wrappers.<User2>query().like("name", "J")).size(), 2);
         Assertions.assertEquals(user2Mapper.selectList(Wrappers.<User2>query().gt("age", 18)
                 .setEntity(new User2().setName("J"))).size(), 1);
+    }
+
+
+    /**
+     * listMaps 方法测试
+     */
+    @Test
+    public void serviceTest(){
+        List<Map<String, Object>> maps = userService.listMaps();
+        System.out.println(maps);
+
     }
 }
