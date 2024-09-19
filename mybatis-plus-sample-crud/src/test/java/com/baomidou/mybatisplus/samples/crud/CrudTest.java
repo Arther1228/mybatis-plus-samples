@@ -242,5 +242,7 @@ public class CrudTest {
         List<Map<String, Object>> maps = userService.listMaps();
         System.out.println(maps);
 
+        List<Object> objects = userService.listObjs();
+        System.out.println(objects);
     }
 }
